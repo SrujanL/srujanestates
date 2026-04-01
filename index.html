@@ -494,6 +494,7 @@
     <h3 class="popup-title">Get Exclusive Plot<br>Pricing & Brochure</h3>
     <p class="popup-sub">Join 500+ investors who've already secured plots near Bhogapuram Airport. Prices increasing — act now.</p>
     <form class="popup-form" id="popupForm" onsubmit="submitForm(event,'popup')">
+     <input type="hidden" name="access_key" value="f4f98710-28de-4887-bca3-d87bcb823e38">
       <div class="form-group"><label>Your Name *</label><input type="text" name="name" placeholder="Enter your name" required></div>
       <div class="form-group"><label>WhatsApp Number *</label><input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" required></div>
       <div class="form-group"><label>I'm interested in</label>
@@ -533,13 +534,14 @@ function submitForm(e,formId){
   e.preventDefault();
   var form=e.target;
   var data=new FormData(form);
+ <input type="hidden" name="access_key" value="f4f98710-28de-4887-bca3-d87bcb823e38">
   var name=data.get('name')||'';
   var phone=data.get('phone')||'';
   var project=data.get('project')||data.get('interest')||'General Enquiry';
   var budget=data.get('budget')||'';
   var size=data.get('size')||'';
   var msg=encodeURIComponent('New Lead from Srujan Estates Website!\n\nName: '+name+'\nPhone: '+phone+'\nProject: '+project+(budget?'\nBudget: '+budget:'')+(size?'\nSize: '+size:'')+'\n\nPlease follow up!');
-  fetch('https://formspree.io/f/YOUR_FORM_ID',{method:'POST',body:new URLSearchParams(data),headers:{'Accept':'application/json'}}).catch(function(){});
+  fetch('https://api.web3forms.com/submit',{method:'POST',body:new URLSearchParams(data),headers:{'Accept':'application/json'}}).catch(function(){});
   form.style.display='none';
   document.getElementById(formId==='popup'?'popupSuccess':'mainSuccess').style.display='block';
   setTimeout(function(){window.open('https://wa.me/916371767775?text='+msg,'_blank');},1500);
