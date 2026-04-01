@@ -507,8 +507,8 @@
       </div>
       <button type="submit" class="popup-submit">📩 Send Me Free Brochure & Pricing</button>
     </form>
-    <div class="success-msg" id="popupSuccess">✅ Got it! Srujan will WhatsApp you the brochure shortly. You can also call directly: 6371767775</div>
-    <p class="popup-privacy">🔒 Your info is private. No spam. Srujan Naidu will contact you personally.</p>
+    <div class="success-msg" id="popupSuccess">✅ Got it! We will WhatsApp you the brochure shortly. You can also contact : 6371767775</div>
+    <p class="popup-privacy">🔒 Your info is private. No spam. We will contact you personally.</p>
   </div>
 </div>
 
@@ -532,9 +532,9 @@ function openEnquiry(projectName){
 }
 function submitForm(e,formId){
   e.preventDefault();
+ <input type="hidden" name="access_key" value="f4f98710-28de-4887-bca3-d87bcb823e38">
   var form=e.target;
   var data=new FormData(form);
- <input type="hidden" name="access_key" value="f4f98710-28de-4887-bca3-d87bcb823e38">
   var name=data.get('name')||'';
   var phone=data.get('phone')||'';
   var project=data.get('project')||data.get('interest')||'General Enquiry';
