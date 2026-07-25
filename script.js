@@ -1270,3 +1270,31 @@ if (heroCarousel) {
     startHeroAutoPlay();
 
 }
+
+// Disable right-click menu
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
+});
+
+// Block common DevTools / source shortcuts
+document.addEventListener("keydown", function (event) {
+
+    // F12
+    if (event.key === "F12") {
+        event.preventDefault();
+    }
+
+    // Ctrl + U
+    if (event.ctrlKey && event.key.toLowerCase() === "u") {
+        event.preventDefault();
+    }
+
+    // Ctrl + Shift + I / J / C
+    if (
+        event.ctrlKey &&
+        event.shiftKey &&
+        ["i", "j", "c"].includes(event.key.toLowerCase())
+    ) {
+        event.preventDefault();
+    }
+});
