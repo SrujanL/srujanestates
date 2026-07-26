@@ -175,78 +175,456 @@ reveals.forEach(item=>observer.observe(item));
 // ================================
 function openEnquiry(project){
 
-document.getElementById("enquiryTitle").textContent=project;
+    // Fallback if no project name is supplied
+    const projectName =
+        project || "General Property Enquiry";
 
-document.getElementById("enquiryModal").classList.add("open");
+
+    // Show project name to customer
+    const enquiryTitle =
+        document.getElementById("enquiryTitle");
+
+    if(enquiryTitle){
+        enquiryTitle.textContent = projectName;
+    }
+
+
+    // Store project name inside the hidden form field
+    // This is what Formspree will receive
+    const enquiryProject =
+        document.getElementById("enquiryProject");
+
+    if(enquiryProject){
+        enquiryProject.value = projectName;
+    }
+
+
+    // Open enquiry popup
+    document
+        .getElementById("enquiryModal")
+        .classList.add("open");
 
 }
 
-window.openEnquiry=openEnquiry;
+window.openEnquiry = openEnquiry;
+// ============================================================
+// FORMSPREE CONFIGURATION
+// ============================================================
+
+const FORMSPREE_ENDPOINT =
+    "https://formspree.io/f/mrenoveb";
 
 
-// Close popup
-document.getElementById("closeEnquiry").addEventListener("click",()=>{
+// ============================================================
+// SEND FORM TO FORMSPREE
+// ============================================================
 
-document.getElementById("enquiryModal").classList.remove("open");
+async function sendToFormspree(form) {
 
-});
+    const formData = new FormData(form);
+
+    // Useful information for every lead
+    formData.append("website", "Srujan Estates");
+
+    formData.append(
+        "page_url",
+        window.location.href
+    );
+
+    formData.append(
+        "submitted_at",
+        new Date().toLocaleString("en-IN")
+    );
 
 
-// Close popup when clicking outside
-document.getElementById("enquiryModal").addEventListener("click",(e)=>{
+    const response = await fetch(
+        FORMSPREE_ENDPOINT,
+        {
+            method: "POST",
+            body: formData,
+            headers: {
+                "Accept": "application/json"
+            }
+        }
+    );
 
-if(e.target.id==="enquiryModal"){
 
-document.getElementById("enquiryModal").classList.remove("open");
+    if (!response.ok) {
+
+        throw new Error(
+            "Formspree submission failed"
+        );
+
+    }
+
+
+    return response;
+}
+
+
+
+// ============================================================
+// PROPERTY ENQUIRY POPUP FORM
+// ============================================================
+
+const enquiryForm =
+    document.getElementById("enquiryForm");
+
+
+if (enquiryForm) {
+
+    enquiryForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const msg =
+                document.getElementById(
+                    "enquiryMsg"
+                );
+
+
+            const submitButton =
+                enquiryForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            const originalButtonText =
+                submitButton
+                    ? submitButton.innerHTML
+                    : "";
+
+
+            try {
+
+
+                // ----------------------------------------
+                // LOADING
+                // ----------------------------------------
+
+                if (submitButton) {
+
+                    submitButton.disabled = true;
+
+                    submitButton.innerHTML =
+                        '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+                }
+
+
+                if (msg) {
+
+                    msg.textContent = "";
+
+                    msg.className =
+                        "form-msg";
+
+                }
+
+
+
+
+
+                // ----------------------------------------
+                // FORM SOURCE
+                // ----------------------------------------
+
+                const sourceField =
+                    document.createElement(
+                        "input"
+                    );
+
+
+                sourceField.type =
+                    "hidden";
+
+                sourceField.name =
+                    "form_source";
+
+                sourceField.value =
+                    "Property Enquiry Popup";
+
+
+                enquiryForm.appendChild(
+                    sourceField
+                );
+
+
+
+                // ----------------------------------------
+                // SEND TO FORMSPREE
+                // ----------------------------------------
+
+                await sendToFormspree(
+                    enquiryForm
+                );
+
+
+
+                // ----------------------------------------
+                // SUCCESS
+                // ----------------------------------------
+
+                if (msg) {
+
+                    msg.textContent =
+                        "✓ Enquiry sent successfully! We'll contact you shortly.";
+
+                    msg.className =
+                        "form-msg show ok";
+
+                }
+
+
+                enquiryForm.reset();
+
+
+
+                sourceField.remove();
+
+
+
+                // ----------------------------------------
+                // CLOSE POPUP AFTER SUCCESS
+                // ----------------------------------------
+
+                setTimeout(
+                    () => {
+
+                        document
+                            .getElementById(
+                                "enquiryModal"
+                            )
+                            ?.classList.remove(
+                                "open"
+                            );
+
+
+                        if (msg) {
+
+                            msg.textContent = "";
+
+                            msg.className =
+                                "form-msg";
+
+                        }
+
+                    },
+                    2200
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Enquiry submission error:",
+                    error
+                );
+
+
+                if (msg) {
+
+                    msg.textContent =
+                        "Something went wrong. Please try again or contact us on WhatsApp.";
+
+                    msg.className =
+                        "form-msg show error";
+
+                }
+
+            }
+
+            finally {
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.innerHTML =
+                        originalButtonText;
+
+                }
+
+            }
+
+        }
+    );
 
 }
 
-});
 
 
-// ================================
-// Enquiry Form
-// ================================
-document.getElementById("enquiryForm").addEventListener("submit",(e)=>{
+// ============================================================
+// MAIN CONTACT FORM
+// ============================================================
 
-e.preventDefault();
-
-const msg=document.getElementById("enquiryMsg");
-
-msg.textContent="Thank you! We'll contact you shortly.";
-
-msg.className="form-msg show ok";
-
-e.target.reset();
-
-setTimeout(()=>{
-
-document.getElementById("enquiryModal").classList.remove("open");
-
-msg.className="form-msg";
-
-},1800);
-
-});
+const leadForm =
+    document.getElementById(
+        "leadForm"
+    );
 
 
-// ================================
-// Contact Form
-// ================================
-document.getElementById("leadForm").addEventListener("submit",(e)=>{
+if (leadForm) {
 
-e.preventDefault();
+    leadForm.addEventListener(
+        "submit",
+        async function(event) {
 
-const msg=document.getElementById("leadMsg");
+            event.preventDefault();
 
-msg.textContent="Thanks! We will contact you soon.";
 
-msg.className="form-msg show ok";
+            const msg =
+                document.getElementById(
+                    "leadMsg"
+                );
 
-e.target.reset();
 
-});
+            const submitButton =
+                leadForm.querySelector(
+                    'button[type="submit"]'
+                );
 
+
+            const originalButtonText =
+                submitButton
+                    ? submitButton.innerHTML
+                    : "";
+
+
+            try {
+
+
+                // ----------------------------------------
+                // LOADING
+                // ----------------------------------------
+
+                if (submitButton) {
+
+                    submitButton.disabled = true;
+
+                    submitButton.innerHTML =
+                        '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+                }
+
+
+                if (msg) {
+
+                    msg.textContent = "";
+
+                    msg.className =
+                        "form-msg";
+
+                }
+
+
+
+                // ----------------------------------------
+                // FORM SOURCE
+                // ----------------------------------------
+
+                const sourceField =
+                    document.createElement(
+                        "input"
+                    );
+
+
+                sourceField.type =
+                    "hidden";
+
+                sourceField.name =
+                    "form_source";
+
+                sourceField.value =
+                    "Main Website Contact Form";
+
+
+                leadForm.appendChild(
+                    sourceField
+                );
+
+
+
+                // ----------------------------------------
+                // SEND
+                // ----------------------------------------
+
+                await sendToFormspree(
+                    leadForm
+                );
+
+
+
+                // ----------------------------------------
+                // SUCCESS
+                // ----------------------------------------
+
+                if (msg) {
+
+                    msg.textContent =
+                        "✓ Thank you! Your enquiry has been sent successfully.";
+
+                    msg.className =
+                        "form-msg show ok";
+
+                }
+
+
+                leadForm.reset();
+
+                sourceField.remove();
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Contact form error:",
+                    error
+                );
+
+
+                if (msg) {
+
+                    msg.textContent =
+                        "Something went wrong. Please try again or contact us on WhatsApp.";
+
+                    msg.className =
+                        "form-msg show error";
+
+                }
+
+            }
+
+            finally {
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.innerHTML =
+                        originalButtonText;
+
+                }
+
+            }
+
+        }
+    );
+
+}
 
 // ================================
 // Website Ready
@@ -1298,3 +1676,5 @@ document.addEventListener("keydown", function (event) {
         event.preventDefault();
     }
 });
+
+
