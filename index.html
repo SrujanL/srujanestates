@@ -396,15 +396,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             </button>
 
 
-            <a
-              href="https://wa.me/916371767775?text=Hi%20Srujan%20Estates,%20I'm%20interested%20in%20Bhogapuram%20Airport%20Residency.%20Please%20share%20complete%20details."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary"
-            >
-              <i class="fab fa-whatsapp"></i>
-              Enquire Now
-            </a>
+       <button
+    type="button"
+    class="btn btn-primary"
+    onclick="openEnquiry('Bhogapuram Airport Residency')"
+>
+    <i class="fas fa-paper-plane"></i>
+    Enquire Now
+      </button>
 
           </div>
 
@@ -503,15 +502,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             </button>
 
 
-            <a
-              href="https://wa.me/916371767775?text=Hi%20Srujan%20Estates,%20I'm%20interested%20in%20Vaarahi%20Ainada%20Township.%20Please%20share%20complete%20details."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary"
-            >
-              <i class="fab fa-whatsapp"></i>
-              Enquire Now
-            </a>
+            <button
+    type="button"
+    class="btn btn-primary"
+    onclick="openEnquiry('Vaarahi Ainada Township')"
+>
+    <i class="fas fa-paper-plane"></i>
+    Enquire Now
+</button>
 
           </div>
 
@@ -610,15 +608,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             </button>
 
 
-            <a
-              href="https://wa.me/916371767775?text=Hi%20Srujan%20Estates,%20I'm%20interested%20in%20Luckie%20Township%20Konada%202.%20Please%20share%20complete%20details."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary"
-            >
-              <i class="fab fa-whatsapp"></i>
-              Enquire Now
-            </a>
+            <button
+    type="button"
+    class="btn btn-primary"
+    onclick="openEnquiry('Luckie Township Konada - II')"
+>
+    <i class="fas fa-paper-plane"></i>
+    Enquire Now
+</button>
 
           </div>
 
@@ -777,7 +774,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         <h4>Direct Venture Pricing</h4>
         <p>No middlemen markups — you get venture-listed prices with our commission paid by the developer.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card hide-on-mobile">
         <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="#1976C9" stroke-width="1.7" stroke-linecap="round"/></svg></div>
         <h4>Doorstep Documentation</h4>
         <p>Sale deed, registration and mutation support handled end-to-end, so you don't chase offices alone.</p>
@@ -846,7 +843,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <!-- ================= TESTIMONIALS ================= -->
 <section id="testimonials" style="background:var(--sky);">
-  <div class="container">
+  <div class="container hide-on-mobile">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
       <div class="eyebrow">Client Stories</div>
       <h2>Families who found their plot through Srujan Estates</h2>
@@ -968,19 +965,418 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </div><!-- /#mainSite -->
 
 <!-- ================= ENQUIRY MODAL ================= -->
+<!-- =====================================================
+     PREMIUM ENQUIRY MODAL
+====================================================== -->
+
 <div class="modal-overlay" id="enquiryModal">
-  <div class="modal">
-    <button class="modal-close" id="closeEnquiry">✕</button>
-    <h3>Enquire — <span id="enquiryTitle">Property</span></h3>
-    <p class="sub">Leave your number and we'll call you back within the hour.</p>
-    <form id="enquiryForm">
-      <div class="field"><label>Full Name</label><input type="text" name="name" required placeholder="Your name"></div>
-      <div class="field"><label>Phone Number</label><input type="tel" name="phone" required placeholder="10-digit mobile"></div>
-      <button type="submit" class="btn btn-primary btn-block">Request Callback</button>
-      <div class="form-msg" id="enquiryMsg"></div>
-    </form>
-  </div>
+
+    <div class="modal enquiry-modal">
+
+        <!-- CLOSE BUTTON -->
+        <button
+            type="button"
+            class="modal-close"
+            id="closeEnquiry"
+            aria-label="Close enquiry form"
+        >
+            <i class="fas fa-xmark"></i>
+        </button>
+
+
+        <!-- FORM HEADER -->
+        <div class="enquiry-modal-header">
+
+            <div class="enquiry-icon">
+                <i class="fas fa-house-circle-check"></i>
+            </div>
+
+            <div>
+                <span class="enquiry-eyebrow">
+                    SRUJAN ESTATES
+                </span>
+
+                <h3>
+                    Enquire About
+                    <span id="enquiryTitle">a Property</span>
+                </h3>
+
+                <p>
+                    Share your requirements and we'll help you
+                    shortlist the right plot.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ENQUIRY FORM
+        ================================================== -->
+
+        <form id="enquiryForm">
+
+
+            <!-- Hidden project field -->
+            <input
+                type="hidden"
+                name="project"
+                id="enquiryProject"
+                value="General Enquiry"
+            >
+
+
+            <!-- NAME + PHONE -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label for="enquiryName">
+                        Full Name *
+                    </label>
+
+                    <div class="input-icon-wrap">
+
+                        <i class="fas fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="enquiryName"
+                            name="name"
+                            required
+                            autocomplete="name"
+                            placeholder="Your full name"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="enquiryPhone">
+                        Mobile Number *
+                    </label>
+
+                    <div class="input-icon-wrap">
+
+                        <i class="fas fa-phone"></i>
+
+                        <input
+                            type="tel"
+                            id="enquiryPhone"
+                            name="phone"
+                            required
+                            autocomplete="tel"
+                            inputmode="numeric"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            placeholder="10-digit mobile"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="field">
+
+                <label for="enquiryEmail">
+                    Email Address
+                    <span class="optional-label">Optional</span>
+                </label>
+
+                <div class="input-icon-wrap">
+
+                    <i class="fas fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="enquiryEmail"
+                        name="email"
+                        autocomplete="email"
+                        placeholder="yourname@example.com"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- LOCALITY + BUDGET -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label for="enquiryLocality">
+                        Preferred Locality
+                    </label>
+
+                    <select
+                        id="enquiryLocality"
+                        name="locality"
+                    >
+                        <option value="">Select locality</option>
+
+                        <option value="Bhogapuram">
+                            Bhogapuram
+                        </option>
+
+                        <option value="Konada">
+                            Konada
+                        </option>
+
+                        <option value="Ainada">
+                            Ainada
+                        </option>
+
+                        <option value="Anandapuram">
+                            Anandapuram
+                        </option>
+
+                        <option value="Kothavalasa">
+                            Kothavalasa
+                        </option>
+
+                        <option value="Madhurawada">
+                            Madhurawada
+                        </option>
+
+                        <option value="Pendurthi">
+                            Pendurthi
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="enquiryBudget">
+                        Budget
+                    </label>
+
+                    <select
+                        id="enquiryBudget"
+                        name="budget"
+                    >
+
+                        <option value="">
+                            Select budget
+                        </option>
+
+                        <option value="Under ₹20 Lakhs">
+                            Under ₹20 Lakhs
+                        </option>
+
+                        <option value="₹20–40 Lakhs">
+                            ₹20–40 Lakhs
+                        </option>
+
+                        <option value="₹40–80 Lakhs">
+                            ₹40–80 Lakhs
+                        </option>
+
+                        <option value="₹80 Lakhs+">
+                            ₹80 Lakhs+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- PURPOSE + PLOT SIZE -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label for="enquiryPurpose">
+                        Buying Purpose
+                    </label>
+
+                    <select
+                        id="enquiryPurpose"
+                        name="purpose"
+                    >
+
+                        <option value="">
+                            Select purpose
+                        </option>
+
+                        <option value="Investment">
+                            Investment
+                        </option>
+
+                        <option value="Future Home">
+                            Future Home
+                        </option>
+
+                        <option value="Immediate Construction">
+                            Immediate Construction
+                        </option>
+
+                        <option value="Retirement">
+                            Retirement
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="enquiryPlotSize">
+                        Preferred Plot Size
+                    </label>
+
+                    <select
+                        id="enquiryPlotSize"
+                        name="plot_size"
+                    >
+
+                        <option value="">
+                            Select plot size
+                        </option>
+
+                        <option value="Below 200 Sq.Yards">
+                            Below 200 Sq.Yards
+                        </option>
+
+                        <option value="200–250 Sq.Yards">
+                            200–250 Sq.Yards
+                        </option>
+
+                        <option value="250–300 Sq.Yards">
+                            250–300 Sq.Yards
+                        </option>
+
+                        <option value="300+ Sq.Yards">
+                            300+ Sq.Yards
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- SITE VISIT DATE -->
+
+            <div class="field">
+
+                <label for="enquiryVisitDate">
+                    Preferred Site Visit Date
+                </label>
+
+                <input
+                    type="date"
+                    id="enquiryVisitDate"
+                    name="site_visit_date"
+                >
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div class="field">
+
+                <label for="enquiryMessage">
+                    Anything else you'd like us to know?
+                    <span class="optional-label">Optional</span>
+                </label>
+
+                <textarea
+                    id="enquiryMessage"
+                    name="message"
+                    rows="3"
+                    placeholder="Tell us about your requirements..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- SUBMIT BUTTON -->
+
+            <button
+                type="submit"
+                class="btn btn-primary btn-block enquiry-submit-btn"
+                id="enquirySubmitBtn"
+            >
+
+                <span class="submit-normal">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                    Send Enquiry
+
+                </span>
+
+                <span
+                    class="submit-loading"
+                    hidden
+                >
+
+                    <i class="fas fa-spinner fa-spin"></i>
+
+                    Sending...
+
+                </span>
+
+            </button>
+
+
+            <!-- PRIVACY NOTE -->
+
+            <div class="enquiry-privacy">
+
+                <i class="fas fa-lock"></i>
+
+                Your details are sent directly to Srujan Estates
+                and used only to respond to your enquiry.
+
+            </div>
+
+
+            <!-- SUCCESS / ERROR MESSAGE -->
+
+            <div
+                class="form-msg"
+                id="enquiryMsg"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+
+        </form>
+
+    </div>
+
 </div>
+
+<!-- ================= END ENQUIRY MODAL ================= -->
 
 <!-- =====================================================
      PROJECT DETAILS POPUP
