@@ -695,10 +695,7 @@ const projectDetails = {
             "images/varbi/bhogapuram1.jpg",
             "images/varbi/bhogapuram2.jpg",
             "images/varbi/bhogapuram3.jpg",
-            "images/varbi/bhogapuram4.jpg"
-            "images/varbi/bhogapuram5.jpg"
-            "images/varbi/bhogapuram6.jpg"
-            "images/varbi/bhogapuram7.jpg"
+            "images/varbi/bhogapuram4.jpg",
         ],
 
 
