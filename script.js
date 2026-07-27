@@ -675,13 +675,13 @@ const projectDetails = {
 
     "bhogapuram-airport": {
 
-        name: "Bhogapuram Airport Residency",
+        name: "Bhogapuram Airport Residences",
 
         location: "Bhogapuram, Visakhapatnam",
 
         developer: "Swathi Promoters",
 
-        plotSizes: "200 | 267 | 300 Sq.Yards",
+        plotSizes: "167 | 200 | 200+ Sq.Yards",
 
         approval: "VMRDA Approved",
 
@@ -692,10 +692,13 @@ const projectDetails = {
 
         // GALLERY IMAGES
         gallery: [
-            "images/bhogapuram.jpg",
-            "images/bhogapuram-2.jpg",
-            "images/bhogapuram-3.jpg",
-            "images/bhogapuram-4.jpg"
+            "images/varbi/bhogapuram1.jpg",
+            "images/varbi/bhogapuram2.jpg",
+            "images/varbi/bhogapuram3.jpg",
+            "images/varbi/bhogapuram4.jpg"
+            "images/varbi/bhogapuram5.jpg"
+            "images/varbi/bhogapuram6.jpg"
+            "images/varbi/bhogapuram7.jpg"
         ],
 
 
@@ -716,6 +719,7 @@ const projectDetails = {
             "Easy access to NH-16",
             "Rapidly developing investment corridor",
             "Good connectivity to Visakhapatnam"
+            "Near to Mukkham Beach"
         ],
 
 
@@ -733,15 +737,14 @@ const projectDetails = {
         projectInfo: [
             "Property Type: Open Plots",
             "Developer: Swathi Promoters",
-            "Price: Call For Price",
+            "Call For Price: +91 63717 67775",
             "Site Visit Available"
         ],
 
 
         // IMPORTANT:
         // Use YouTube EMBED URL
-        youtube:
-        "https://www.youtube.com/embed/YOUR_VIDEO_ID",
+        youtube: "https://www.youtube.com/embed/8DarkExAPw0",
 
 
         // WhatsApp enquiry message
@@ -764,7 +767,7 @@ const projectDetails = {
 
         developer: "Swathi Promoters",
 
-        plotSizes: "200 | 267 | 300 Sq.Yards",
+        plotSizes: "167 | 200 | 200+ Sq.Yards",
 
         approval: "VMRDA Approved",
 
@@ -773,7 +776,7 @@ const projectDetails = {
         loan: "Bank Loan Available",
 
         gallery: [
-            "images/vaarahi-ainada.jpg"
+            "images/carousel_ainada.jpg"
         ],
 
         amenities: [
@@ -800,7 +803,7 @@ const projectDetails = {
         projectInfo: [
             "Property Type: Open Plots",
             "Developer: Swathi Promoters",
-            "Price: Call For Price",
+            "Call For Price: +91 63717 67775",
             "Site Visit Available"
         ],
 
@@ -826,7 +829,7 @@ const projectDetails = {
 
         developer: "Swathi Promoters",
 
-        plotSizes: "200 | 267 | 300 Sq.Yards",
+        plotSizes: "167 | 200 | 200+ Sq.Yards",
 
         approval: "VMRDA Approved",
 
@@ -835,7 +838,7 @@ const projectDetails = {
         loan: "Bank Loan Available",
 
         gallery: [
-            "images/vaarahi-ainada.jpg"
+            "images/carousel_konada.jpg"
         ],
 
         amenities: [
@@ -861,7 +864,7 @@ const projectDetails = {
         projectInfo: [
             "Property Type: Open Plots",
             "Developer: Swathi Promoters",
-            "Price: Call For Price",
+            "Call For Price: +91 63717 67775",
             "Site Visit Available"
         ],
 
@@ -887,7 +890,7 @@ const projectDetails = {
 
         developer: "Swathi Promoters",
 
-        plotSizes: "200 | 267 | 300 Sq.Yards",
+        plotSizes: "167 | 200 | 200+ Sq.Yards",
 
         approval: "VMRDA Approved",
 
@@ -922,7 +925,7 @@ const projectDetails = {
         projectInfo: [
             "Property Type: Open Plots",
             "Developer: Swathi Promoters",
-            "Price: Call For Price",
+            "Call For Price: +91 63717 67775",
             "Site Visit Available"
         ],
 
