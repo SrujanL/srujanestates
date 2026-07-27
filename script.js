@@ -716,7 +716,6 @@ const projectDetails = {
             "Easy access to NH-16",
             "Rapidly developing investment corridor",
             "Good connectivity to Visakhapatnam"
-            "Near to Mukkham Beach"
         ],
 
 
